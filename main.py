@@ -1,9 +1,7 @@
-from Backend import *
-from Frontend import *
+import Frontend
 
 def main():
-    Frontend()
+    Frontend.Frontend()
 
 if __name__ == "__main__":
     main()
-    print("main() BREAKED") #for debugging
