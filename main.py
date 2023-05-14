@@ -1,5 +1,4 @@
 import Frontend
-
 def main():
     Frontend.Frontend()
 
