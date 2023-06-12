@@ -1,5 +1,4 @@
 from gpt4free import usesless
-import asyncio
 
 class Dialog():
     message_id = ''

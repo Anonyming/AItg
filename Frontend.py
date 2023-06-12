@@ -1,5 +1,4 @@
 from aiogram import Bot, Dispatcher, executor, types
-import asyncio
 import Backend
 
 async def Frontend():
