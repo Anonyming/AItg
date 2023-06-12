@@ -1,27 +1,55 @@
-import telebot
-
+from aiogram import Bot, Dispatcher, executor, types
+import asyncio
 import Backend
 
-def Frontend():
+async def Frontend():
     while True:
         chat = Backend.Dialog()
-        bot = telebot.TeleBot('6238669874:AAH_VdzYuNTnIZFXeQKBQLiVSFnWFIJvlT8')
+        bot = Dispatcher(Bot('6238669874:AAH_VdzYuNTnIZFXeQKBQLiVSFnWFIJvlT8'))
+
+        async def sample_buttons():
+            markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            hibtn = types.KeyboardButton("Hello!")
+            await markup.add(hibtn)
+            wsbtn = types.KeyboardButton("What is GPT-like chatbots?")
+            await markup.add(wsbtn)
+            wycbtn = types.KeyboardButton("What you can?")
+            await markup.add(wycbtn)
+            scbtn = types.KeyboardButton("Show me your source code, please.")
+            await markup.add(scbtn)
+            hbtn = types.KeyboardButton("/help")
+            await markup.add(hbtn)
+            yield markup
+
         @bot.message_handler(commands=['start'])
-        def start(message):
-            markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-            hibtn = telebot.types.KeyboardButton("Hello!")
-            wsbtn = telebot.types.KeyboardButton("What is GPT-like chatbots?")
-            wycbtn = telebot.types.KeyboardButton("What you can?")
-            markup.add(wsbtn)
-            markup.add(hibtn)
-            markup.add(wycbtn)
-            bot.send_message(message.from_user.id, "Welcome to AItg GPT-like chatbot")
+        async def start(message):
+            markup = sample_buttons()
+            await message.answer(message.chat.id, "Welcome to AItg GPT-like chatbot", reply_markup=markup)
+
+        @bot.message_handler(commands=['help'])
+        async def help(message):
+            markup = sample_buttons()
+            await message.answer(message.chat.id, '''
+            Welcome to AItg GPT-like bot \n
+            This is a chat with Artificial Intelligence, than created in OpenAI \n
+            For free using it uses gpt4free \n
+            You messages haven't history and context \n
+            I going to fix it \n
+            You can't ask illegal questions \n
+            It be in plans to fix too \n
+            Talk to him for work, fun and anymore you can mind \n
+            But know, AI can imagine wrong facts (artificial hallucinations) \n
+            Useful use, \n
+            AItg's creator \n
+            \n
+            Simple phrases to type: 
+            ''', reply_markup=markup)
 
         @bot.message_handler(content_types=['text'])
-        def Dialogue(message):
+        async def Dialogue(message):
             if message.text != "Show me your source code, please.":
-                bot.send_message(message.from_user.id, chat.getAnswer(prompt=message.text))
+                await message.answer(message.chat.id, chat.getAnswer(prompt=message.text))
             else:
-                bot.send_message(message.from_user.id, "https://GitHub.com/Anonyming/AItg")
+                await message.answer(message.chat.id, "https://GitHub.com/Anonyming/AItg")
 
-        bot.polling(none_stop=True, interval=0)
+        executor.start_polling(dispatcher=bot)
