@@ -35,7 +35,7 @@ async def Frontend():
             You messages haven't history and context \n
             I going to fix it \n
             You can't ask illegal questions \n
-            It be in plans to fix too \n
+            You can use ChatGPT Jailbreak to solve it (https://github.com/GabryB03/ChatGPT-jailbraks) \n
             Talk to him for work, fun and anymore you can mind \n
             But know, AI can imagine wrong facts (artificial hallucinations) \n
             Useful use, \n
