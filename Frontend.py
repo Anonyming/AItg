@@ -47,7 +47,7 @@ async def Frontend():
         @bot.message_handler(content_types=['text'])
         async def Dialogue(message):
             if message.text != "Show me your source code, please.":
-                await message.answer(message.chat.id, chat.getAnswer(prompt=message.text))
+                await message.answer(message.chat.id, chat.getAnswer(prompt=message.text, iteration=1))
             else:
                 await message.answer(message.chat.id, "https://GitHub.com/Anonyming/AItg")
 
