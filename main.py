@@ -1,5 +1,6 @@
 import Frontend
 
+
 async def main(iteration):
     try:
         await print("main func started OK")
@@ -18,8 +19,6 @@ async def main(iteration):
             raise Exception
 
 
-
 if __name__ == "__main__":
     print("starting main ...")
-    iteration = 1
-    main(iteration)
+    main(iteration=1)

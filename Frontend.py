@@ -1,9 +1,18 @@
 from aiogram import Bot, Dispatcher, executor, types
 import Backend
 
+class Chat():
+    def __init__(self):
+        self.__phonebook = dict()
+
+    async def set(self, tg_chat_id, value):
+        self.__phonebook = self.__phonebook + {tg_chat_id:value}
+
+    async def get(self, tg_chat_id):
+        return self.__phonebook.get(tg_chat_id, Backend.Dialog())
 async def Frontend():
     while True:
-        chat = Backend.Dialog()
+        chat = dict()
         bot = Dispatcher(Bot('6238669874:AAH_VdzYuNTnIZFXeQKBQLiVSFnWFIJvlT8'))
 
         async def sample_buttons():
@@ -22,6 +31,7 @@ async def Frontend():
 
         @bot.message_handler(commands=['start'])
         async def start(message):
+
             markup = sample_buttons()
             await message.answer(message.chat.id, "Welcome to AItg GPT-like chatbot", reply_markup=markup)
 
@@ -32,8 +42,6 @@ async def Frontend():
             Welcome to AItg GPT-like bot \n
             This is a chat with Artificial Intelligence, than created in OpenAI \n
             For free using it uses gpt4free \n
-            You messages haven't history and context \n
-            I going to fix it \n
             You can't ask illegal questions \n
             You can use ChatGPT Jailbreak to solve it (https://github.com/GabryB03/ChatGPT-jailbraks) \n
             Talk to him for work, fun and anymore you can mind \n

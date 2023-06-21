@@ -7,7 +7,12 @@ class Dialog():
 
     async def getAnswer(self, prompt, iteration):
         try:
-            self.request = usesless.Completion.create(prompt=prompt, parentMessageId=self.message_id)
+            try:
+                self.request = usesless.Completion.create(prompt=prompt, parentMessageId=self.message_id)
+            except:
+                err = "server request error"
+                print(err)
+                raise err
             self.message_id = self.request["id"]
             answer = self.request['text']
             return answer
@@ -18,9 +23,8 @@ class Dialog():
                 await self.__init__()
                 print("restarting getAnswer func")
                 print(f'{iteration}/3')
-                returned = self.getAnswer(iteration)
                 iteration = iteration + 1
-                return returned
+                return self.getAnswer(iteration=iteration-1, prompt=prompt)
             else:
                 print("Finally crash in Backend")
                 raise Exception
