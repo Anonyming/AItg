@@ -1,5 +1,8 @@
 from gpt4free import usesless
 
+import Frontend
+
+
 class Dialog():
     def __init__(self):
         self.message_id = ''

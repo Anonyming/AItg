@@ -46,6 +46,8 @@ async def Frontend():
             You can use ChatGPT Jailbreak to solve it (https://github.com/GabryB03/ChatGPT-jailbraks) \n
             Talk to him for work, fun and anymore you can mind \n
             But know, AI can imagine wrong facts (artificial hallucinations) \n
+            Images, GIFs and all except text is not supported \n
+            I going to support it in next versions \n
             Useful use, \n
             AItg's creator \n
             \n
@@ -60,3 +62,17 @@ async def Frontend():
                 await message.answer(message.chat.id, "https://GitHub.com/Anonyming/AItg")
 
         executor.start_polling(dispatcher=bot)
+
+def ERROR(Exception):
+    print("seting error mode")
+    bot = Dispatcher(Bot('6238669874:AAH_VdzYuNTnIZFXeQKBQLiVSFnWFIJvlT8'))
+    @bot.message_handler(content_types=['text'])
+    async def WarnUsers(message, Exception=Exception):
+        await message.answer(message.chat.id, f'''
+        ERROR MESSAGE!!! \n
+        BOT IS NOT WORKING \n
+        ERROR: \n
+        {Exception} \n
+        ''' )
+
+    print("seted error mode")

@@ -15,7 +15,9 @@ async def main(iteration):
             iteration = iteration + 1
             return None
         else:
-            print("Finally crash")
+            print(f'Finally crash: {Exception}')
+            print("trying to set error mode")
+            await Frontend.ERROR(Exception=Exception)
             raise Exception
 
 
